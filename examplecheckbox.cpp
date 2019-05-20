@@ -83,10 +83,17 @@ void ExampleCheckBox::handle(event ev)
     if(ev.pos_x <= _x+_size_x && ev.pos_x >= _x && ev.pos_y <= _y+_size_y && ev.pos_y >= _y && ev.type == ev_mouse && ev.button == btn_left)
     {
         _checked=true;
-        if(_checked)
+        if(_checked && t==0)
         {
             t=(unsigned)q+1;
             q=!q;
+            for(int i=0; i<20; i++)
+            {
+                for(int j=0; j<20; j++)
+                {
+                    a[i][j] = w[i*20+j]->t;
+                }
+            }
         }
     }
 
