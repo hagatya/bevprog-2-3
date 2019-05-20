@@ -49,6 +49,7 @@ void ablak()
         {
             ExampleCheckBox * b1 = new ExampleCheckBox(i*25,j*25,24,24);
             w.push_back(b1);
+            a[i][j] = w[i*20+j]->t;
         }
     }
     event_loop(w);
@@ -58,10 +59,23 @@ void ablak()
 ExampleCheckBox::ExampleCheckBox(int x, int y, int sx, int sy) : Widget(x,y,sx,sy)
 {
     _checked=false;
+    t=0;
 }
 
 void ExampleCheckBox::draw()
 {
+    if(t==0)
+    {
+        gout << move_to(_x, _y) << color(255,255,255) << box(_size_x, _size_y);
+    }
+    if(t==1)
+    {
+        gout << move_to(_x, _y) << color(0,255,0) << box(_size_x, _size_y);
+    }
+    if(t==2)
+    {
+        gout << move_to(_x, _y) << color(255,0,0) << box(_size_x, _size_y);
+    }
 }
 
 void ExampleCheckBox::handle(event ev)
@@ -69,7 +83,11 @@ void ExampleCheckBox::handle(event ev)
     if(ev.pos_x <= _x+_size_x && ev.pos_x >= _x && ev.pos_y <= _y+_size_y && ev.pos_y >= _y && ev.type == ev_mouse && ev.button == btn_left)
     {
         _checked=true;
-
+        if(_checked)
+        {
+            t=(unsigned)q+1;
+            q=!q;
+        }
     }
 
 }

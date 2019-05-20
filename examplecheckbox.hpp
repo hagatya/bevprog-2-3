@@ -18,6 +18,7 @@ public:
     virtual void draw();
     virtual void handle(event ev);
     virtual bool is_checked();
+    char t;
 };
 
 void endgame();
